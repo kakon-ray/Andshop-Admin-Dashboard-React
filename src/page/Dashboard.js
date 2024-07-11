@@ -68,8 +68,8 @@ function Dashboard() {
                             <div id="collapsePages" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Product Manage</h6>
-                                    <Link className="collapse-item" to="/manage-product">Manage Product</Link>
-                                    <Link className="collapse-item" to="/add-product">Product Add</Link>
+                                    <Link className="collapse-item" to="/product/manage">Manage Product</Link>
+                                    <Link className="collapse-item" to="/product/add">Product Add</Link>
                         
                                 </div>
                             </div>

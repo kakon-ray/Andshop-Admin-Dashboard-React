@@ -6,14 +6,15 @@ import Dashboard from './page/Dashboard';
 import DashboardHome from './page/DashboardHome/DashboardHome';
 import ManageProduct from './page/ManageProduct/ManageProduct';
 
+
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Dashboard />}>
         <Route index element={<DashboardHome />} />
-          <Route path='/manage-product' element={< ManageProduct />} />
-          <Route path='/add-product' element={< AddProduct />} />
+          <Route path='/product/manage' element={< ManageProduct />} />
+          <Route path='/product/add' element={< AddProduct />} />
         </Route>
       </Routes>
 
