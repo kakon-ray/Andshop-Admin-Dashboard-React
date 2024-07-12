@@ -70,9 +70,24 @@ function Dashboard() {
                                     <h6 className="collapse-header">Product Manage</h6>
                                     <Link className="collapse-item" to="/product/manage">Manage Product</Link>
                                     <Link className="collapse-item" to="/product/add">Product Add</Link>
-                        
                                 </div>
                             </div>
+
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
+                                aria-expanded="true" aria-controls="collapsePages">
+                                <i className="fas fa-fw fa-folder"></i>
+                                <span>Category</span>
+                            </a>
+                      
+                            <div id="collapsePages1" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Category Manage</h6>
+                                    <Link className="collapse-item" to="/category/manage">Manage Category</Link>
+                                </div>
+                            </div>
+
                         </li>
 
 
