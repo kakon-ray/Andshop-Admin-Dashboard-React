@@ -1,9 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AddProduct = () => {
     return (
         <div className='container-fluid'>
+
+            <div className="d-flex justify-content-between py-4">
+                <h2>Create Product</h2>
+                <Link to='/product/manage'>
+                <button className='btn btn-info'>Manage Product</button>
+                </Link>
+            </div>
+
             <div className='row'>
+
                 <div className='col-lg-12'>
                     <form method="POST" action="" enctype="multipart/form-data">
                         <div className="row pb-3">
@@ -56,7 +66,7 @@ const AddProduct = () => {
                                 <label>Images</label>
                                 <input required type="text" class="form-control" name="images" placeholder="Images" />
                             </div>
-                            
+
                             <div class="col-lg-3 py-2">
                                 <label>Admin id</label>
                                 <input required type="text" class="form-control" name="admin_id" placeholder="Admin id" />
@@ -71,7 +81,7 @@ const AddProduct = () => {
                                 <label>Thumbnail</label>
                                 <input required type="text" class="form-control" name="thumbnail" placeholder="Thumbnail" />
                             </div>
-                         
+
 
                         </div>
 

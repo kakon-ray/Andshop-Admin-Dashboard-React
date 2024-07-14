@@ -42,7 +42,7 @@ const ManageCategory = () => {
     }
 
     // start read category
-    const { categories, loading } = useSelector((state) => state.app);
+    const { categories, loading } = useSelector((state) => state.category);
 
     useEffect(() => {
         dispatch(showCategory())
