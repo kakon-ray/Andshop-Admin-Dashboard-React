@@ -6,38 +6,81 @@ import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal } from 'react-bootstrap';
-import { createCategory, showCategory } from '../../features/categoryDetailsSlice';
+import { createCategory, deleteCategory, showCategory, updateCategory } from '../../features/categoryDetailsSlice';
 
 const ManageCategory = () => {
 
 
+    // crate category state management
     const [category, setCategory] = useState({})
+
+     // update category state management
+     const [updatecategory, setUpdateCategory] = useState({})
+
+    // react bootstrap modal show for create category
     const [show, setShow] = useState(false);
+    // react bootstrap modal show for update category
+    const [showUpdate, setShowUpdate] = useState(false);
 
     const dispatch = useDispatch();
 
+
+    // start  crate category 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    // get category value when onchange input
     const getCategory = (e) => {
         setCategory({ ...category, [e.target.name]: e.target.value })
     }
 
+    // submit create cateogry
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(category)
         dispatch(createCategory(category))
         setShow(false)
     }
 
-
+    // start read category
     const { categories, loading } = useSelector((state) => state.app);
-    console.log(categories)
 
     useEffect(() => {
         dispatch(showCategory())
     }, [])
 
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // start update category
+
+    const handleUpdateClose = () => setShowUpdate(false);
+
+    // show bootstrap modal and show value update category name
+    const handleShowUpdate = (id) => {
+        setShowUpdate(true)
+        categories.map(item => {
+            if(item.id === id){
+                updatecategory.category_name = item.category_name;
+                updatecategory.id = id;
+            }
+        })
+    };
+
+    // onchange update category
+    const getUpdateCategory = (e) => {
+        setUpdateCategory({ ...updatecategory, [e.target.name]: e.target.value })
+    }
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        // console.log(updatecategory)
+        dispatch(updateCategory(updatecategory))
+        setShowUpdate(false)
+    }
+
+    const handleDelete = (id) => {
+        dispatch(deleteCategory(id))
+        setShowUpdate(false)
+    }
+
 
     return (
         <div className='container-fluid'>
@@ -68,9 +111,9 @@ const ManageCategory = () => {
 
                                             <td class="th-sm d-flex gap-3 justify-content-center">
                                                 <a href="#" type="button"
-                                                    class="btn btn-info btn-circle btn-sm m-1" data-toggle="modal" data-target="#updatecategory"><i class="fas fa-edit"></i></a>
+                                                    class="btn btn-info btn-circle btn-sm m-1" onClick={() => handleShowUpdate(item.id)}><i class="fas fa-edit"></i></a>
 
-                                                <a type="button" class="btn btn-danger btn-circle btn-sm m-1"><i class="fas fa-trash"></i></a>
+                                                <a type="button" class="btn btn-danger btn-circle btn-sm m-1" onClick={()=>handleDelete(item.id)}><i class="fas fa-trash"></i></a>
 
 
                                             </td>
@@ -115,34 +158,30 @@ const ManageCategory = () => {
 
 
                 {/* update modal */}
-                <div class="modal fade" id="updatecategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Update Category</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form method="POST" action="" enctype="multipart/form-data">
-                                    <div className="row pb-3">
-                                        <div class="col-lg-12 py-2">
-                                            <label>Category Name</label>
-                                            <input required type="text" class="form-control" name="category_name" placeholder="Enter Category Name" />
-                                        </div>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary">
-                                        Submit
-                                    </button>
-
-                                </form>
-                            </div>
-
-                        </div>
+                <Modal show={showUpdate} onHide={handleUpdateClose}>
+                    <div className='d-flex justify-content-end'>
+                        <button className='btn btn-primary btn-sm' onClick={handleUpdateClose}>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </div>
+                    <h2 className="text-center">Create Category</h2>
+                    <Modal.Body>
+                        <form onSubmit={handleUpdate}>
+                            <div className="row pb-3">
+                                <div class="col-lg-12 py-2">
+                                    <label>Category Name</label>
+                                    <input required type="text" class="form-control" name="category_name" value={updatecategory.category_name} onChange={getUpdateCategory} />
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+
+                        </form>
+                    </Modal.Body>
+
+                </Modal>
 
 
             </div>
