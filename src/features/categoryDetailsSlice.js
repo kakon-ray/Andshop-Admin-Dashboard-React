@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from 'react-toastify';
 
 export const createCategory = createAsyncThunk("createCategory", async (data, { rejectWithValue }) => {
 
@@ -95,10 +96,12 @@ const categoryDetails = createSlice({
             .addCase(createCategory.fulfilled, (state, action) => {
                 state.loading = false;
                 state.categories.push(action.payload);
+                toast.success('Category created successfully!');
             })
             .addCase(createCategory.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
+                toast.error('Failed to create Category!');
             })
 
             //   show category
@@ -123,10 +126,12 @@ const categoryDetails = createSlice({
                 state.categories = state.categories.map((item) =>
                     item.id === action.payload.id ? action.payload : item
                   );
+                  toast.success('Category update successfully!');
             })
             .addCase(updateCategory.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
+                toast.error('Failed to update Category!');
             })
             //   delete category
             .addCase(deleteCategory.pending, (state) => {
@@ -138,10 +143,12 @@ const categoryDetails = createSlice({
                 if (id) {
                   state.categories = state.categories.filter((item) => item.id !== id);
                 }
+                toast.success('Category delete successfully!');
             })
             .addCase(deleteCategory.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
+                toast.error('Failed to delete Category!');
             });
 
 
