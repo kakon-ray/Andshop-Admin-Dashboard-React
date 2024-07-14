@@ -55,7 +55,36 @@ function Dashboard() {
                                 <span>Dashboard</span></Link>
                         </li>
 
+                        <li className="nav-item">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
+                                aria-expanded="true" aria-controls="collapsePages">
+                                <i className="fas fa-fw fa-folder"></i>
+                                <span>Category</span>
+                            </a>
+                      
+                            <div id="collapsePages1" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Category Manage</h6>
+                                    <Link className="collapse-item" to="/category/manage">Manage Category</Link>
+                                </div>
+                            </div>
 
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
+                                aria-expanded="true" aria-controls="collapsePages2">
+                                <i className="fas fa-fw fa-folder"></i>
+                                <span>Subcategory</span>
+                            </a>
+                      
+                            <div id="collapsePages2" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Subcategory Manage</h6>
+                                    <Link className="collapse-item" to="/subcategory/manage">Manage Subcategory</Link>
+                                </div>
+                            </div>
+
+                        </li>
 
 
                         {/*  <!-- Nav Item - Pages Collapse Menu --> */}
@@ -74,21 +103,7 @@ function Dashboard() {
                             </div>
 
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
-                                aria-expanded="true" aria-controls="collapsePages">
-                                <i className="fas fa-fw fa-folder"></i>
-                                <span>Category</span>
-                            </a>
-                      
-                            <div id="collapsePages1" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                                <div className="bg-white py-2 collapse-inner rounded">
-                                    <h6 className="collapse-header">Category Manage</h6>
-                                    <Link className="collapse-item" to="/category/manage">Manage Category</Link>
-                                </div>
-                            </div>
-
-                        </li>
+                  
 
 
                     </ul>
