@@ -43,6 +43,7 @@ const ManageCategory = () => {
 
     // start read category
     const { categories, loading } = useSelector((state) => state.category);
+    // console.log(categories)
 
     useEffect(() => {
         dispatch(showCategory())
@@ -102,7 +103,7 @@ const ManageCategory = () => {
                         </thead>
                         <tbody>
                             {
-                                categories.map((item) => {
+                                categories?.map((item) => {
                                     return (
                                         <tr class="text-center" key={item.id}>
                                             <td class="th-sm ">{item.id}</td>

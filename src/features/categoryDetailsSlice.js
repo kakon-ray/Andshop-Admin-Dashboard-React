@@ -1,14 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from 'react-toastify';
 
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3VzZXJfbG9naW4iLCJpYXQiOjE3MjEwNDA0ODUsImV4cCI6MTcyMTA0NDA4NSwibmJmIjoxNzIxMDQwNDg1LCJqdGkiOiJ2bDZGQVIxOUJmSkp3ZkZaIiwic3ViIjoiMSIsInBydiI6ImE0YzQ4OGE5MDcwZDMwNTFlYzgyZWFiYzliYTZjZGYyMWVkNjU1M2MiLCJyb2xlIjoidXNlcmJhc2ljIn0.2SMnUfUmibLbDUSFG4AvDsW8xnj77gLfyHEBQT_SdX0'
 export const createCategory = createAsyncThunk("createCategory", async (data, { rejectWithValue }) => {
 
     const response = await fetch(
-        "https://669355f4c6be000fa07adf62.mockapi.io/crud",
+        "http://127.0.0.1:8000/api/category/add",
         {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: 'Bearer' + ' ' + token,
             },
             body: JSON.stringify(data),
         }
@@ -16,6 +18,7 @@ export const createCategory = createAsyncThunk("createCategory", async (data, { 
 
     try {
         const result = await response.json();
+    //    console.log(result)
         return result;
 
     } catch (error) {
@@ -27,10 +30,14 @@ export const createCategory = createAsyncThunk("createCategory", async (data, { 
 );
 
 export const showCategory = createAsyncThunk('showCategory', async (args, { rejectWithValue }) => {
-    const response = await fetch("https://669355f4c6be000fa07adf62.mockapi.io/crud",);
+    const response = await fetch("http://127.0.0.1:8000/api/category/show", {
+        headers: {
+            Authorization: 'Bearer' + ' ' + token,
+        },
+    });
     try {
         const result = await response.json()
-        return result;
+        return result.category;
     } catch (error) {
         return rejectWithValue(error)
     }
@@ -39,11 +46,12 @@ export const showCategory = createAsyncThunk('showCategory', async (args, { reje
 export const updateCategory = createAsyncThunk("updateCategory", async (data, { rejectWithValue }) => {
     //   console.log(data)
     const response = await fetch(
-        `https://669355f4c6be000fa07adf62.mockapi.io/crud/${data.id}`,
+        `http://127.0.0.1:8000/api/category/edit`,
         {
-            method: "PUT",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: 'Bearer' + ' ' + token,
             },
             body: JSON.stringify(data),
         }
@@ -62,9 +70,14 @@ export const updateCategory = createAsyncThunk("updateCategory", async (data, { 
 );
 
 export const deleteCategory = createAsyncThunk("deleteCategory", async (id, { rejectWithValue }) => {
-    console.log(id)
+    // console.log(id)
   const response = await fetch(
-      `https://669355f4c6be000fa07adf62.mockapi.io/crud/${id}`,{ method: "DELETE" });
+      `http://127.0.0.1:8000/api/category/delete/${id}`, {
+        method: "GET",
+        headers: {
+            Authorization: 'Bearer' + ' ' + token,
+        },
+    });
 
   try {
       const result = await response.json();
@@ -95,8 +108,8 @@ const categoryDetails = createSlice({
             })
             .addCase(createCategory.fulfilled, (state, action) => {
                 state.loading = false;
-                state.categories.push(action.payload);
-                toast.success('Category created successfully!');
+                state.categories.push(action.payload.data);
+                toast.success(action.payload.msg);
             })
             .addCase(createCategory.rejected, (state, action) => {
                 state.loading = false;
@@ -139,11 +152,10 @@ const categoryDetails = createSlice({
             })
             .addCase(deleteCategory.fulfilled, (state, action) => {
                 state.loading = false;
-                const { id } = action.payload;
-                if (id) {
-                  state.categories = state.categories.filter((item) => item.id !== id);
+                if (action.payload.id) {
+                  state.categories = state.categories.filter((item) => item.id != action.payload.id);
                 }
-                toast.success('Category delete successfully!');
+                toast.success(action.payload.msg);
             })
             .addCase(deleteCategory.rejected, (state, action) => {
                 state.loading = false;
