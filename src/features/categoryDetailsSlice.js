@@ -135,9 +135,10 @@ const categoryDetails = createSlice({
                 state.loading = true;
             })
             .addCase(updateCategory.fulfilled, (state, action) => {
+                console.log(action.payload.data)
                 state.loading = false;
                 state.categories = state.categories.map((item) =>
-                    item.id === action.payload.id ? action.payload : item
+                    item.id === action.payload.id ? action.payload.data : item 
                   );
                   toast.success('Category update successfully!');
             })
