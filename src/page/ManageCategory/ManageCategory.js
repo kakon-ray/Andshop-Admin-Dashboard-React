@@ -77,6 +77,7 @@ const ManageCategory = () => {
         setShowUpdate(false)
     }
 
+    // delete category
     const handleDelete = (id) => {
         dispatch(deleteCategory(id))
         setShowUpdate(false)
