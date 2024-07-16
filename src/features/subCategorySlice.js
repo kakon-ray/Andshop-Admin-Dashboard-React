@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from 'react-toastify';
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3VzZXJfbG9naW4iLCJpYXQiOjE3MjExMDI2MjgsImV4cCI6MTcyMTEwNjIyOCwibmJmIjoxNzIxMTAyNjI4LCJqdGkiOiJhMklhNlVhV3FMeVhISTJJIiwic3ViIjoiMSIsInBydiI6ImE0YzQ4OGE5MDcwZDMwNTFlYzgyZWFiYzliYTZjZGYyMWVkNjU1M2MiLCJyb2xlIjoidXNlcmJhc2ljIn0.1BuwpxOJkv5Zm11BFFExNeo_eLxUX_f3DQVhB93NE8g'
+
+const user = JSON.parse(localStorage.getItem('admin'));
+const token = user?.token
 
 export const createSubCategory = createAsyncThunk("createSubCategory", async (data, { rejectWithValue }) => {
 

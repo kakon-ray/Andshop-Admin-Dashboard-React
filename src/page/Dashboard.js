@@ -25,6 +25,10 @@ function Dashboard() {
         }
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('user')
+    }
+
     return (
         <div>
             <body id="page-top">
@@ -104,6 +108,12 @@ function Dashboard() {
 
                         </li>
                   
+                  
+                        <li className="nav-item active">
+                            <a className="nav-link" href="#" onClick={handleLogout}>
+                            <i class="bi bi-box-arrow-left" style={{fontSize:'20px'}}></i>
+                                <span className='pl-1'>Logout</span></a>
+                        </li>
 
 
                     </ul>

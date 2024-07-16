@@ -158,7 +158,7 @@ const ManageCategory = () => {
                                 </div>
                                 <div class="col-lg-12 py-2">
                                     <label>Subcategory Name</label>
-                                    <input required type="text" class="form-control" name="subcategory_name" placeholder="Enter Category Name" onChange={getSubCategory} />
+                                    <input required type="text" class="form-control" name="subcategory_name" placeholder="Enter Subcategory Name" onChange={getSubCategory} />
                                 </div>
                             </div>
 
