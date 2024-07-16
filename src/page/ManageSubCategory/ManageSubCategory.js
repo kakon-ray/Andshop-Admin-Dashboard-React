@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Modal } from 'react-bootstrap';
-import { createCategory, deleteCategory, showCategory, updateCategory } from '../../features/categoryDetailsSlice';
+import { showCategory} from '../../features/categoryDetailsSlice';
 import { createSubCategory, deleteSubCategory, showSubCategory, updateSubCategory } from '../../features/subCategorySlice';
 
 const ManageCategory = () => {

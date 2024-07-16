@@ -26,7 +26,7 @@ function Dashboard() {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('user')
+        localStorage.removeItem('admin')
     }
 
     return (
