@@ -15,8 +15,8 @@ const ManageCategory = () => {
     // crate category state management
     const [subcategory, setSubCategory] = useState({})
 
-     // update category state management
-     const [updatesubcategory, setUpdateSubCategory] = useState({})
+    // update category state management
+    const [updatesubcategory, setUpdateSubCategory] = useState({})
 
     // react bootstrap modal show for create category
     const [show, setShow] = useState(false);
@@ -44,9 +44,11 @@ const ManageCategory = () => {
 
     // start read category
     const { subcategories, loading } = useSelector((state) => state.subcategory);
+    const { categories, loading2 } = useSelector((state) => state.category);
 
     useEffect(() => {
         dispatch(showSubCategory())
+        dispatch(showCategory())
     }, [])
 
 
@@ -58,8 +60,9 @@ const ManageCategory = () => {
     const handleShowUpdate = (id) => {
         setShowUpdate(true)
         subcategories.map(item => {
-            if(item.id === id){
-                updatesubcategory.category_name = item.category_name;
+            if (item.id === id) {
+                updatesubcategory.subcategory_name = item.subcategory_name;
+                updatesubcategory.category_id = item.category_id;
                 updatesubcategory.id = id;
             }
         })
@@ -67,12 +70,13 @@ const ManageCategory = () => {
 
     // onchange update category
     const getUpdateCategory = (e) => {
+
         setUpdateSubCategory({ ...updatesubcategory, [e.target.name]: e.target.value })
     }
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        // console.log(updatecategory)
+        updatesubcategory.category_id = e.target.category_id.value
         dispatch(updateSubCategory(updatesubcategory))
         setShowUpdate(false)
     }
@@ -95,26 +99,26 @@ const ManageCategory = () => {
                         <thead class="table-dark ">
                             <tr>
                                 <th class="th-sm text-center">ID</th>
-                                <th class="th-sm text-center">Category Name</th>
-                                <th class="th-sm text-center">Category Slug</th>
+                                <th class="th-sm text-center">Subcategory Name</th>
+                                <th class="th-sm text-center">Subcategory Slug</th>
                                 <th class="th-sm text-center">Action</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                subcategories.map((item) => {
+                                subcategories?.map((item) => {
                                     return (
-                                        <tr class="text-center" key={item.id}>
-                                            <td class="th-sm ">{item.id}</td>
-                                            <td class="th-sm ">{item.category_name}</td>
-                                            <td class="th-sm ">{item.category_name}</td>
+                                        <tr class="text-center" key={item?.id}>
+                                            <td class="th-sm ">{item?.id}</td>
+                                            <td class="th-sm ">{item?.subcategory_name}</td>
+                                            <td class="th-sm ">{item?.subcat_slug}</td>
 
                                             <td class="th-sm d-flex gap-3 justify-content-center">
                                                 <a href="#" type="button"
                                                     class="btn btn-info btn-circle btn-sm m-1" onClick={() => handleShowUpdate(item.id)}><i class="fas fa-edit"></i></a>
 
-                                                <a type="button" class="btn btn-danger btn-circle btn-sm m-1" onClick={()=>handleDelete(item.id)}><i class="fas fa-trash"></i></a>
+                                                <a type="button" class="btn btn-danger btn-circle btn-sm m-1" onClick={() => handleDelete(item.id)}><i class="fas fa-trash"></i></a>
 
 
                                             </td>
@@ -143,8 +147,18 @@ const ManageCategory = () => {
                         <form onSubmit={handleSubmit}>
                             <div className="row pb-3">
                                 <div class="col-lg-12 py-2">
+                                    <label>Select Category</label>
+                                    <select class="form-control" name='category' aria-label="Default select example" onChange={getSubCategory}>
+                                        <option selected>Select Category</option>
+                                        {categories?.map((item) => {
+                                            return <option value={item.id}>{item.category_name}</option>
+                                        })}
+
+                                    </select>
+                                </div>
+                                <div class="col-lg-12 py-2">
                                     <label>Subcategory Name</label>
-                                    <input required type="text" class="form-control" name="category_name" placeholder="Enter Category Name" onChange={getSubCategory} />
+                                    <input required type="text" class="form-control" name="subcategory_name" placeholder="Enter Category Name" onChange={getSubCategory} />
                                 </div>
                             </div>
 
@@ -169,9 +183,19 @@ const ManageCategory = () => {
                     <Modal.Body>
                         <form onSubmit={handleUpdate}>
                             <div className="row pb-3">
+
+                                <div class="col-lg-12 py-2">
+                                    <select class="form-control"  name='category_id' aria-label="Default select example" onChange={getSubCategory}>
+                                        <option value=''>Select Category</option>
+                                        {categories?.map((item) => {
+                                            return <option value={item.id} selected={item.id == updatesubcategory.category_id}>{item.category_name}</option>
+                                        })}
+
+                                    </select>
+                                </div>
                                 <div class="col-lg-12 py-2">
                                     <label>Subcategory Name</label>
-                                    <input required type="text" class="form-control" name="category_name" value={updatesubcategory.category_name} onChange={getUpdateCategory} />
+                                    <input required type="text" class="form-control" name="subcategory_name" value={updatesubcategory.subcategory_name} onChange={getUpdateCategory} />
                                 </div>
                             </div>
 

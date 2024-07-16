@@ -1,14 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from 'react-toastify';
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3VzZXJfbG9naW4iLCJpYXQiOjE3MjExMDI2MjgsImV4cCI6MTcyMTEwNjIyOCwibmJmIjoxNzIxMTAyNjI4LCJqdGkiOiJhMklhNlVhV3FMeVhISTJJIiwic3ViIjoiMSIsInBydiI6ImE0YzQ4OGE5MDcwZDMwNTFlYzgyZWFiYzliYTZjZGYyMWVkNjU1M2MiLCJyb2xlIjoidXNlcmJhc2ljIn0.1BuwpxOJkv5Zm11BFFExNeo_eLxUX_f3DQVhB93NE8g'
 
 export const createSubCategory = createAsyncThunk("createSubCategory", async (data, { rejectWithValue }) => {
 
     const response = await fetch(
-        "https://669355f4c6be000fa07adf62.mockapi.io/crud",
+        "http://127.0.0.1:8000/api/subcategory/add",
         {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: 'Bearer' + ' ' + token,
             },
             body: JSON.stringify(data),
         }
@@ -16,7 +18,8 @@ export const createSubCategory = createAsyncThunk("createSubCategory", async (da
 
     try {
         const result = await response.json();
-        return result;
+        console.log(result)
+        return result.subcategory;
 
     } catch (error) {
         return rejectWithValue(error)
@@ -27,23 +30,28 @@ export const createSubCategory = createAsyncThunk("createSubCategory", async (da
 );
 
 export const showSubCategory = createAsyncThunk('showSubCategory', async (args, { rejectWithValue }) => {
-    const response = await fetch("https://669355f4c6be000fa07adf62.mockapi.io/crud",);
+    const response = await fetch("http://127.0.0.1:8000/api/subcategory/show", {
+        headers: {
+            Authorization: 'Bearer' + ' ' + token,
+        },
+    });
     try {
         const result = await response.json()
-        return result;
+        return result.subcategory;
     } catch (error) {
         return rejectWithValue(error)
     }
 })
 
 export const updateSubCategory = createAsyncThunk("updateSubCategory", async (data, { rejectWithValue }) => {
-    //   console.log(data)
+   
     const response = await fetch(
-        `https://669355f4c6be000fa07adf62.mockapi.io/crud/${data.id}`,
+        `http://127.0.0.1:8000/api/subcategory/edit`,
         {
-            method: "PUT",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: 'Bearer' + ' ' + token,
             },
             body: JSON.stringify(data),
         }
@@ -64,7 +72,12 @@ export const updateSubCategory = createAsyncThunk("updateSubCategory", async (da
 export const deleteSubCategory = createAsyncThunk("deleteSubCategory", async (id, { rejectWithValue }) => {
     console.log(id)
     const response = await fetch(
-        `https://669355f4c6be000fa07adf62.mockapi.io/crud/${id}`, { method: "DELETE" });
+        `http://127.0.0.1:8000/api/subcategory/delete/${id}`, {
+        method: "GET",
+        headers: {
+            Authorization: 'Bearer' + ' ' + token,
+        },
+    });
 
     try {
         const result = await response.json();
@@ -126,9 +139,9 @@ const subCategoryDetails = createSlice({
             .addCase(updateSubCategory.fulfilled, (state, action) => {
                 state.loading = false;
                 state.subcategories = state.subcategories.map((item) =>
-                    item.id === action.payload.id ? action.payload : item
+                    item.id === action.payload.id ? action.payload.data : item
                 );
-                toast.success('Subcategory update successfully!');
+                toast.success(action.payload.msg);
             })
             .addCase(updateSubCategory.rejected, (state, action) => {
                 state.loading = false;
@@ -142,11 +155,12 @@ const subCategoryDetails = createSlice({
             })
             .addCase(deleteSubCategory.fulfilled, (state, action) => {
                 state.loading = false;
-                const { id } = action.payload;
-                if (id) {
-                    state.subcategories = state.subcategories.filter((item) => item.id !== id);
-                }
-                toast.success('Subcategory delete successfully!');
+                if (action.payload.id) {
+                    state.subcategories = state.subcategories.filter((item) => item.id != action.payload.id);
+                  }
+                  toast.success(action.payload.msg);
+
+              
             })
             .addCase(deleteSubCategory.rejected, (state, action) => {
                 state.loading = false;

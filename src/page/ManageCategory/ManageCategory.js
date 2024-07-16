@@ -50,7 +50,7 @@ const ManageCategory = () => {
     }, [])
 
 
-    // start update category
+    // ========= start update category ============
 
     const handleUpdateClose = () => setShowUpdate(false);
 

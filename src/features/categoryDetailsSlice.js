@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from 'react-toastify';
 
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3VzZXJfbG9naW4iLCJpYXQiOjE3MjEwNDA0ODUsImV4cCI6MTcyMTA0NDA4NSwibmJmIjoxNzIxMDQwNDg1LCJqdGkiOiJ2bDZGQVIxOUJmSkp3ZkZaIiwic3ViIjoiMSIsInBydiI6ImE0YzQ4OGE5MDcwZDMwNTFlYzgyZWFiYzliYTZjZGYyMWVkNjU1M2MiLCJyb2xlIjoidXNlcmJhc2ljIn0.2SMnUfUmibLbDUSFG4AvDsW8xnj77gLfyHEBQT_SdX0'
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3VzZXJfbG9naW4iLCJpYXQiOjE3MjExMDI2MjgsImV4cCI6MTcyMTEwNjIyOCwibmJmIjoxNzIxMTAyNjI4LCJqdGkiOiJhMklhNlVhV3FMeVhISTJJIiwic3ViIjoiMSIsInBydiI6ImE0YzQ4OGE5MDcwZDMwNTFlYzgyZWFiYzliYTZjZGYyMWVkNjU1M2MiLCJyb2xlIjoidXNlcmJhc2ljIn0.1BuwpxOJkv5Zm11BFFExNeo_eLxUX_f3DQVhB93NE8g'
 export const createCategory = createAsyncThunk("createCategory", async (data, { rejectWithValue }) => {
 
     const response = await fetch(
