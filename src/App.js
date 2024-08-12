@@ -18,7 +18,7 @@ function App() {
 
       <Routes>
       <Route path="/signin" element={<SignIn />}/>
-      {/* <Route path="/signup" element={<SignUp />}/> */}
+      <Route path="/signup" element={<SignUp />}/>
 
         <Route path="/" element={<AdminMiddleware><Dashboard /></AdminMiddleware>}>
         <Route index element={<AdminMiddleware><DashboardHome /></AdminMiddleware>} />
