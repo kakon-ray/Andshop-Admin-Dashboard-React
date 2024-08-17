@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { showProduct } from '../../features/productsDetailsSlice';
+import { toast } from 'react-toastify';
 
 const ManageProduct = () => {
 
@@ -24,8 +25,6 @@ const ManageProduct = () => {
 
         const data = {id,value}
 
-          console.log(data)
-          
         const response = await fetch(
             `http://127.0.0.1:8000/api/admin/product/approved`,
             {
@@ -41,6 +40,7 @@ const ManageProduct = () => {
         try {
             const result = await response.json();
             if(result.success){
+                toast.success("Product Status Chnaged");
                 dispatch(showProduct())
             }
 
@@ -50,8 +50,31 @@ const ManageProduct = () => {
 
     }
 
-    const handleDelete = () => {
+    const handleDelete = async (id) => {
+       
 
+        const response = await fetch(
+            `http://127.0.0.1:8000/api/admin/product/delete`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: 'Bearer' + ' ' + token,
+                },
+                body: JSON.stringify({id}),
+            }
+        );
+
+        try {
+            const result = await response.json();
+            if(result.success){
+                toast.success("Product deleted successfully");
+                dispatch(showProduct())
+            }
+
+        } catch (error) {
+          console.log(error)
+        }
     }
 
 
