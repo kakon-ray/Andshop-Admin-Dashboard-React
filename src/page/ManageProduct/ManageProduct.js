@@ -43,7 +43,6 @@ const ManageProduct = () => {
             if(result.success){
                 dispatch(showProduct())
             }
-            console.log(result.success)
 
         } catch (error) {
           console.log(error)
@@ -52,7 +51,7 @@ const ManageProduct = () => {
     }
 
     const handleDelete = () => {
-        
+
     }
 
 
