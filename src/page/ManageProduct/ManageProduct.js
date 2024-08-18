@@ -109,7 +109,7 @@ const ManageProduct = () => {
                         </thead>
                         <tbody>
                             {
-                                products.map((item, index) => {
+                                products?.map((item, index) => {
                                     return <tr class="text-center" key={item?.id}>
                                         <td class="th-sm ">{index + 1}</td>
                                         <td class="th-sm ">

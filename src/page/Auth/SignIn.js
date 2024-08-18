@@ -28,8 +28,11 @@ const SignIn = () => {
 
         try {
             const result = await response.json();
-            localStorage.setItem('admin',JSON.stringify(result));
-            navigate('/')
+            if(result.success){
+                localStorage.setItem('admin',JSON.stringify(result));
+                navigate('/')
+            }
+         
 
         } catch (error) {
             console.log(error)
