@@ -66,7 +66,7 @@ function Dashboard() {
                                 <i className="fas fa-fw fa-folder"></i>
                                 <span>Category</span>
                             </a>
-                      
+
                             <div id="collapsePages1" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Category Manage</h6>
@@ -81,7 +81,7 @@ function Dashboard() {
                                 <i className="fas fa-fw fa-folder"></i>
                                 <span>Subcategory</span>
                             </a>
-                      
+
                             <div id="collapsePages2" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                                 <div className="bg-white py-2 collapse-inner rounded">
                                     <h6 className="collapse-header">Subcategory Manage</h6>
@@ -107,11 +107,27 @@ function Dashboard() {
                             </div>
 
                         </li>
-                  
-                  
+
+                        {/*  Manage vendor */}
+                        <li className="nav-item">
+                            <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVendor"
+                                aria-expanded="true" aria-controls="collapseVendor">
+                                <i className="fas fa-fw fa-folder"></i>
+                                <span>Vendor</span>
+                            </a>
+                            <div id="collapseVendor" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                                <div className="bg-white py-2 collapse-inner rounded">
+                                    <h6 className="collapse-header">Vendor Manage</h6>
+                                    <Link className="collapse-item" to="/vendor/manage">Manage Vendor</Link>
+                                </div>
+                            </div>
+
+                        </li>
+
+
                         <li className="nav-item active">
                             <a className="nav-link" href="#" onClick={handleLogout}>
-                            <i class="bi bi-box-arrow-left" style={{fontSize:'20px'}}></i>
+                                <i class="bi bi-box-arrow-left" style={{ fontSize: '20px' }}></i>
                                 <span className='pl-1'>Logout</span></a>
                         </li>
 
@@ -331,7 +347,7 @@ function Dashboard() {
                             {/*  <!-- End of Topbar --> */}
                             {/* <!-- Begin Page Content --> */}
                             <Outlet />
-                          
+
 
                         </div>
                         {/*   <!-- End of Main Content -->

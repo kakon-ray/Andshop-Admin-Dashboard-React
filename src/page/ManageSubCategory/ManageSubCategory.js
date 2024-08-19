@@ -93,7 +93,6 @@ const ManageCategory = () => {
                 <button type="button" class="btn btn-info" onClick={handleShow}>Create Subcategory<i class="bi bi-plus"></i></button>
             </div>
             <div className="row">
-
                 <div className="col-lg-12 table-responsive">
                     <table id="VisitorDt" class="table table-bordered" cellspacing="0" width="100%">
                         <thead class="table-dark ">

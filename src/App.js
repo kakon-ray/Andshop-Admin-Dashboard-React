@@ -8,6 +8,7 @@ import ManageSubCategory from './page/ManageSubCategory/ManageSubCategory';
 import SignIn from './page/Auth/SignIn';
 import SignUp from './page/Auth/SignUp';
 import AdminMiddleware from './component/middleware/AdminMiddleware';
+import ManageVendorRequest from './page/VendorRequest/ManageVendorRequest';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route index element={<AdminMiddleware><DashboardHome /></AdminMiddleware>} />
 
           <Route path='/product/manage' element={<AdminMiddleware>< ManageProduct /></AdminMiddleware>} />
+          <Route path='/vendor/manage' element={<AdminMiddleware>< ManageVendorRequest /></AdminMiddleware>} />
 
           <Route path='/category/manage' element={<AdminMiddleware>< ManageCategory /></AdminMiddleware>} />
           <Route path='/subcategory/manage' element={<AdminMiddleware>< ManageSubCategory /></AdminMiddleware>} />
