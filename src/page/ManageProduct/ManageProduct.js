@@ -26,7 +26,7 @@ const ManageProduct = () => {
         const data = {id,value}
 
         const response = await fetch(
-            `http://andshop.web-builderit.com/api/admin/product/approved`,
+            `https://andshop.web-builderit.com/api/admin/product/approved`,
             {
                 method: "POST",
                 headers: {
@@ -54,7 +54,7 @@ const ManageProduct = () => {
        
 
         const response = await fetch(
-            `http://andshop.web-builderit.com/api/admin/product/delete`,
+            `https://andshop.web-builderit.com/api/admin/product/delete`,
             {
                 method: "POST",
                 headers: {

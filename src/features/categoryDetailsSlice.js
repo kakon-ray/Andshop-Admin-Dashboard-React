@@ -7,7 +7,7 @@ const token = user?.token
 export const createCategory = createAsyncThunk("createCategory", async (data, { rejectWithValue }) => {
 
     const response = await fetch(
-        "http://andshop.web-builderit.com/api/admin/category/add",
+        "https://andshop.web-builderit.com/api/admin/category/add",
         {
             method: "POST",
             headers: {
@@ -33,7 +33,7 @@ export const createCategory = createAsyncThunk("createCategory", async (data, { 
 
 
 export const showCategory = createAsyncThunk('showCategory', async (args, { rejectWithValue }) => {
-    const response = await fetch("http://andshop.web-builderit.com/api/admin/category/show", {
+    const response = await fetch("https://andshop.web-builderit.com/api/admin/category/show", {
         headers: {
             Authorization: 'Bearer' + ' ' + token,
         },
@@ -49,7 +49,7 @@ export const showCategory = createAsyncThunk('showCategory', async (args, { reje
 export const updateCategory = createAsyncThunk("updateCategory", async (data, { rejectWithValue }) => {
     //   console.log(data)
     const response = await fetch(
-        `http://andshop.web-builderit.com/api/admin/category/edit`,
+        `https://andshop.web-builderit.com/api/admin/category/edit`,
         {
             method: "POST",
             headers: {
@@ -75,7 +75,7 @@ export const updateCategory = createAsyncThunk("updateCategory", async (data, { 
 export const deleteCategory = createAsyncThunk("deleteCategory", async (id, { rejectWithValue }) => {
     // console.log(id)
   const response = await fetch(
-      `http://andshop.web-builderit.com/api/admin/category/delete/${id}`, {
+      `https://andshop.web-builderit.com/api/admin/category/delete/${id}`, {
         method: "GET",
         headers: {
             Authorization: 'Bearer' + ' ' + token,

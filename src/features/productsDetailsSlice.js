@@ -7,7 +7,7 @@ const token = user?.token
 
 
 export const showProduct = createAsyncThunk('showProduct', async (args, { rejectWithValue }) => {
-    const response = await fetch("http://andshop.web-builderit.com/api/admin/product/manage", {
+    const response = await fetch("https://andshop.web-builderit.com/api/admin/product/manage", {
         headers: {
             Authorization: 'Bearer' + ' ' + token,
         },
@@ -24,7 +24,7 @@ export const showProduct = createAsyncThunk('showProduct', async (args, { reject
 export const deleteProduct = createAsyncThunk("deleteProduct", async (id, { rejectWithValue }) => {
     // console.log(id)
   const response = await fetch(
-      `http://andshop.web-builderit.com/api/admin/product/delete/${id}`, {
+      `https://andshop.web-builderit.com/api/admin/product/delete/${id}`, {
         method: "GET",
         headers: {
             Authorization: 'Bearer' + ' ' + token,
