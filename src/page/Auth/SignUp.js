@@ -19,7 +19,7 @@ const SignUp = () => {
         }
 
         const response = await fetch(
-            "http://127.0.0.1:8000/api/sign_up",
+            "http://andshop.web-builderit.com/api/sign_up",
             {
                 method: "POST",
                 headers: {

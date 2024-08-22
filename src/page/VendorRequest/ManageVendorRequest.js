@@ -18,7 +18,7 @@ const ManageVendorRequest = () => {
         const data = { id, value };
 
         const response = await fetch(
-            `http://127.0.0.1:8000/api/admin/role/request/accepted`,
+            `http://andshop.web-builderit.com/api/admin/role/request/accepted`,
             {
                 method: "POST",
                 headers: {

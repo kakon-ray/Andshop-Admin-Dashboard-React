@@ -7,7 +7,7 @@ const token = user?.token
 export const createSubCategory = createAsyncThunk("createSubCategory", async (data, { rejectWithValue }) => {
 
     const response = await fetch(
-        "http://127.0.0.1:8000/api/admin/subcategory/add",
+        "http://andshop.web-builderit.com/api/admin/subcategory/add",
         {
             method: "POST",
             headers: {
@@ -32,7 +32,7 @@ export const createSubCategory = createAsyncThunk("createSubCategory", async (da
 );
 
 export const showSubCategory = createAsyncThunk('showSubCategory', async (args, { rejectWithValue }) => {
-    const response = await fetch("http://127.0.0.1:8000/api/admin/subcategory/show", {
+    const response = await fetch("http://andshop.web-builderit.com/api/admin/subcategory/show", {
         headers: {
             Authorization: 'Bearer' + ' ' + token,
         },
@@ -48,7 +48,7 @@ export const showSubCategory = createAsyncThunk('showSubCategory', async (args, 
 export const updateSubCategory = createAsyncThunk("updateSubCategory", async (data, { rejectWithValue }) => {
    
     const response = await fetch(
-        `http://127.0.0.1:8000/api/admin/subcategory/edit`,
+        `http://andshop.web-builderit.com/api/admin/subcategory/edit`,
         {
             method: "POST",
             headers: {
@@ -74,7 +74,7 @@ export const updateSubCategory = createAsyncThunk("updateSubCategory", async (da
 export const deleteSubCategory = createAsyncThunk("deleteSubCategory", async (id, { rejectWithValue }) => {
     console.log(id)
     const response = await fetch(
-        `http://127.0.0.1:8000/api/admin/subcategory/delete/${id}`, {
+        `http://andshop.web-builderit.com/api/admin/subcategory/delete/${id}`, {
         method: "GET",
         headers: {
             Authorization: 'Bearer' + ' ' + token,

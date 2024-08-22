@@ -6,7 +6,7 @@ const token = user?.token
 
 
 export const showUser = createAsyncThunk('showUser', async (args, { rejectWithValue }) => {
-    const response = await fetch("http://127.0.0.1:8000/api/admin/vendor/manage", {
+    const response = await fetch("http://andshop.web-builderit.com/api/admin/vendor/manage", {
         headers: {
             Authorization: 'Bearer' + ' ' + token,
         },
